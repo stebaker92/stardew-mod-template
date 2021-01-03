@@ -17,6 +17,8 @@ namespace SMAPI.Template
             config = helper.ReadConfig<Config>();
 
             helper.Events.Input.ButtonPressed += Input_ButtonPressed;
+
+			// Register your Events or Harmony patches here!
         }
 
         private void Input_ButtonPressed(object sender, ButtonPressedEventArgs e)
