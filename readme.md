@@ -1,16 +1,17 @@
 # Stardew Valley Mod Template
 
-A template for Stardew Valley mods using SMAPI v3
+A template for Stardew Valley mods using SMAPI v4
 
 ## Usage
-- Set your namespace in `SMAPI.Template.csproj` 
-- Set your mods name and entrypoint in `manifest.json`
-- Add your mods logic to the `Entry` function in the `ModEntry` class
+- Set the mod name & author in `manifest.json`
+- Add your mods logic to the `Entry` function within the `ModEntry` class
+- Update the `GamePath` property within `Stardew.ModTemplate.csproj`
 
 ## Publishing mods
-- Set or bump the version in `manifest.json`
+- Set the version in `manifest.json`
 - Build the project via Visual Studio or the dotnet CLI
-- Zip the `/release` directory and upload to the Nexus portal
+- Find the generated `.zip` file located in the `bin/Debug/` directory
+- Upload the zip file to the Nexus portal
 - Done!
 
 
