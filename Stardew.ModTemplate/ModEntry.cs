@@ -1,27 +1,25 @@
-﻿using StardewModdingAPI.Events;
-using StardewModdingAPI;
+﻿using StardewModdingAPI;
+using StardewModdingAPI.Events;
 using StardewValley;
 
-namespace Stardew.ModTemplate
-{
-	/// <summary>The mod entry point.</summary>
-	internal sealed class ModEntry : Mod
-	{
-		/// <summary>The mod entry point, called after the mod is first loaded.</summary>
-		/// <param name="helper">Provides simplified APIs for writing mods.</param>
-		public override void Entry(IModHelper helper)
-		{
-			helper.Events.Input.ButtonPressed += this.OnButtonPressed;
-		}
+namespace Stardew.ModTemplate;
 
-		/// <summary>Raised after the player presses a button on the keyboard, controller, or mouse.</summary>
-		/// <param name="sender">The event sender.</param>
-		/// <param name="e">The event data.</param>
-		private void OnButtonPressed(object? sender, ButtonPressedEventArgs e)
-		{
-			// print button presses to the console window
-			this.Monitor.Log($"{Game1.player.Name} pressed {e.Button}.", LogLevel.Debug);
-		}
+/// <summary>The mod entry point.</summary>
+internal sealed class ModEntry : Mod
+{
+	/// <summary>The mod entry point, called after the mod is first loaded.</summary>
+	public override void Entry(IModHelper helper)
+	{
+		helper.Events.Input.ButtonPressed += this.OnButtonPressed;
 	}
 
+	/// <summary>Raised after the player presses a button on the keyboard, controller, or mouse.</summary>
+	private void OnButtonPressed(object? sender, ButtonPressedEventArgs e)
+	{
+		// Load a translation string from the i18n folder and show it in a HUD message
+		var msg = Helper.Translation.Get("Message.Debug", new { name = Game1.player.Name, button = e.Button });
+
+		// print button presses to the console window
+		this.Monitor.Log(msg, LogLevel.Debug);
+	}
 }
